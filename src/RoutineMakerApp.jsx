@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { jsPDF } from 'jspdf';
 
 const RoutineMakerApp = () => {
   const [numDays, setNumDays] = useState('');
@@ -28,6 +29,20 @@ const RoutineMakerApp = () => {
 
   const addSubject = () => {
     setSubjects([...subjects, { sub: '', teacher: '', count: '' }]);
+  };
+
+  const generatePDF = () => {
+    const doc = new jsPDF();
+    doc.text("Routine", 20, 10);
+
+    routine.forEach((day, dayIndex) => {
+      doc.text(`Day ${dayIndex + 1}:`, 20, 20 + dayIndex * 10);
+      day.forEach((classItem, classIndex) => {
+        doc.text(`${classItem.sub} - ${classItem.teacher}`, 30, 30 + dayIndex * 10 + classIndex * 10);
+      });
+    });
+
+    doc.save('routine.pdf');
   };
 
   return (
@@ -117,6 +132,7 @@ const RoutineMakerApp = () => {
               </ul>
             </div>
           ))}
+          <button onClick={generatePDF}>Download PDF</button>
         </div>
       )}
     </div>
