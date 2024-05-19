@@ -1,0 +1,45 @@
+.main {
+    /* border: solid tomato 3px; */
+    width: 100%;
+    margin: 20px;
+    padding: 20px;
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+}
+input,label {
+    padding: 7px;
+    margin: 3px;
+
+}
+input {
+    border: solid teal 1px;
+    border-radius: 50px;
+    color: green;
+    font-size: large;
+}
+label {
+    font-size: larger;
+    font-weight: 600;
+}
+.add-sub {
+    color: grey;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+input:focus{
+    border: none;
+    border: 2px solid teal;
+}
+button {
+    background-color: #fff;
+    border: none;
+    border: 3px dotted tomato;
+    cursor: pointer;
+    padding: 3px ;
+margin: 5px;
+}
+.btns {
+padding: 3px ;
+margin: 5px;
+}
