@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { jsPDF } from 'jspdf';
-import 'jspdf-autotable';
+import React, { useState } from "react";
+import { jsPDF } from "jspdf";
+import "jspdf-autotable";
+import "./RoutineMakerApp.css";
 
 const RoutineMakerApp = () => {
   const [numDays, setNumDays] = useState("");

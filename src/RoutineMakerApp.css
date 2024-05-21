@@ -73,7 +73,7 @@ input[type="text"],[type="number"]{
   font-size: 16px;
   margin-top: 10px;
   cursor: pointer;
-  background-color: #007bff;
+  background-color: #007bffba;
   color: white;
   border: none;
   border-radius: 5px;
