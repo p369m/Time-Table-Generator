@@ -1,0 +1,31 @@
+.contact {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid teal;
+    margin: 20px 80%;
+    padding: 15px;
+    width: 250px;
+    text-align: right;
+    /* background-color: rgb(238, 208, 202); */
+    box-shadow: 0 0 10px rgba(160, 93, 93, 0.1);
+    border-radius: 8px;
+  }
+  
+  a,p {
+    text-decoration: none;
+    color: teal;
+    margin: 5px 0;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  a:hover {
+    color: darkslategray;
+  }
+  
+  p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+  }
+  

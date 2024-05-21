@@ -87,12 +87,15 @@ input[type="text"],[type="number"]{
   text-align: left;
 	margin-left: 5%;
   border: 1px solid rgba(0, 11, 128, 0.248);
+  padding: 10px;
+  border-radius: 5px;
 }
 th,
 td {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+  border-radius: 3px;
 }
 th {
   background-color: #f2f2f2;
