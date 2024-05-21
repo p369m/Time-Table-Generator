@@ -1,45 +1,93 @@
-.main {
-    /* border: solid tomato 3px; */
-    width: 100%;
-    margin: 20px;
-    padding: 20px;
-    min-height: 40vh;
-    display: flex;
-    align-items: center;
+.container {
+  background-color: #ffffffa4;
+  height: 40%;
+  /* width: 55%; */
+  overflow: hidden;
+  padding: 5%;
+  font-family: Arial, sans-serif;
+  box-shadow: 4px 4px 8px rgba(67, 67, 67, 0.334);
+  border-radius: 10px;
+	display: flex;
 }
-input,label {
-    padding: 7px;
-    margin: 3px;
-
+@media screen and (max-width: 768px) {
+	.container {
+		width: 100%;
+		display: block;
+	}
 }
-input {
-    border: solid teal 1px;
-    border-radius: 50px;
-    color: green;
-    font-size: large;
+.form {
+	min-width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
-label {
-    font-size: larger;
-    font-weight: 600;
+input[type="text"],[type="number"]{
+	padding: 5px;
+	font-size: 16px;
+	border-radius: 5px;
+	border: 1px solid rgba(0, 0, 0, 0.27);
 }
-.add-sub {
-    color: grey;
-    font-weight: 600;
-    font-size: 0.9rem;
+.base {
+	/* height: 25vh; */
+  padding: 1%;
+  border: 1px solid rgba(0, 11, 128, 0.248);
+  border-radius: 5px;
 }
-input:focus{
-    border: none;
-    border: 2px solid teal;
+#infoLabel {
+  font-size: 24px;
+	text-transform: capitalize;
 }
-button {
-    background-color: #fff;
-    border: none;
-    border: 3px dotted tomato;
-    cursor: pointer;
-    padding: 3px ;
-margin: 5px;
+.inputGroup {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
-.btns {
-padding: 3px ;
-margin: 5px;
+.subjectContainer {
+	/* height: 75vh;
+	overflow-y: scroll; */
+  padding: 1%;
+  border: 1px solid rgba(0, 11, 128, 0.248);
+  border-radius: 5px;
+}
+.subjectGroup {
+  background-color: #ffffffa4;
+  border: 1px solid rgba(0, 11, 128, 0.248);
+  padding: 5%;
+  border-radius: 2px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-bottom: 10px;
+  padding-left: 20px;
+}
+.label {
+  margin-bottom: 5px;
+}
+.input {
+  padding: 5px;
+  font-size: 16px;
+}
+.button {
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+.table {
+  width: 60%;
+  text-align: left;
+	margin-left: 5%;
+}
+th,
+td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+th {
+  background-color: #f2f2f2;
 }

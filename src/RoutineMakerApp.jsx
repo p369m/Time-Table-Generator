@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { jsPDF } from 'jspdf';
-import 'jspdf-autotable';
+import React, { useState } from "react";
+import { jsPDF } from "jspdf";
+import "jspdf-autotable";
+import "./RoutineMakerApp.css";
 
 const RoutineMakerApp = () => {
-  const [numDays, setNumDays] = useState('');
-  const [numClassesPerDay, setNumClassesPerDay] = useState('');
-  const [numSubjects, setNumSubjects] = useState('');
+  const [numDays, setNumDays] = useState("");
+  const [numClassesPerDay, setNumClassesPerDay] = useState("");
+  const [numSubjects, setNumSubjects] = useState("");
   const [subjects, setSubjects] = useState([]);
   const [routine, setRoutine] = useState(null);
   const [showSubjectInputs, setShowSubjectInputs] = useState(false);
@@ -13,7 +14,13 @@ const RoutineMakerApp = () => {
   const handleNumSubjectsChange = (event) => {
     const value = event.target.value;
     setNumSubjects(value);
-    setSubjects(Array.from({ length: parseInt(value, 10) }, () => ({ sub: '', teacher: '', count: '' })));
+    setSubjects(
+      Array.from({ length: parseInt(value, 10) }, () => ({
+        sub: "",
+        teacher: "",
+        count: "",
+      }))
+    );
     setShowSubjectInputs(true);
   };
 
@@ -24,10 +31,12 @@ const RoutineMakerApp = () => {
     const parsedNumClassesPerDay = parseInt(numClassesPerDay, 10);
     const parsedSubjects = subjects.map((subject) => ({
       ...subject,
-      count: parseInt(subject.count, 10)
+      count: parseInt(subject.count, 10),
     }));
 
-    setRoutine(routineMaker(parsedNumDays, parsedNumClassesPerDay, parsedSubjects));
+    setRoutine(
+      routineMaker(parsedNumDays, parsedNumClassesPerDay, parsedSubjects)
+    );
   };
 
   const handleSubjectChange = (index, field, value) => {
@@ -40,9 +49,17 @@ const RoutineMakerApp = () => {
     const doc = new jsPDF();
     doc.text("Routine", 20, 10);
 
-    const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    const days = [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ];
     const tableData = routine.map((day, dayIndex) => {
-      const row = Array(numClassesPerDay).fill('');
+      const row = Array(numClassesPerDay).fill("");
       day.forEach((classItem, classIndex) => {
         row[classIndex] = `${classItem.sub} - ${classItem.teacher}`;
       });
@@ -50,110 +67,136 @@ const RoutineMakerApp = () => {
     });
 
     doc.autoTable({
-      head: [['Day', ...Array.from({ length: numClassesPerDay }, (_, i) => `Class ${i + 1}`)]],
+      head: [
+        [
+          "Day",
+          ...Array.from(
+            { length: numClassesPerDay },
+            (_, i) => `Class ${i + 1}`
+          ),
+        ],
+      ],
       body: tableData,
     });
 
-    doc.save('routine.pdf');
+    doc.save("routine.pdf");
   };
 
   return (
-    <div style={styles.container}>
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <div style={styles.inputGroup}>
-          <label style={styles.label}>
-            Number of working days in a week:
+    <div className="container">
+      <form onSubmit={handleSubmit} className="form">
+        <div className="base">
+          <span id="infoLabel">Basic Classes info</span>
+          <div className="inputGroup">
+            <label className="label">Working days:</label>
             <input
               type="number"
               value={numDays}
               onChange={(e) => setNumDays(e.target.value)}
               required
-              style={styles.input}
+              className="input"
+              placeholder="no of working days/week"
             />
-          </label>
-        </div>
-        <div style={styles.inputGroup}>
-          <label style={styles.label}>
-            Number of classes per day:
+          </div>
+          <div className="inputGroup">
+            <label className="label">Classes per day:</label>
             <input
               type="number"
               value={numClassesPerDay}
               onChange={(e) => setNumClassesPerDay(e.target.value)}
               required
-              style={styles.input}
+              className="input"
+              placeholder="class/day"
             />
-          </label>
-        </div>
-        <div style={styles.inputGroup}>
-          <label style={styles.label}>
-            Number of subjects:
+          </div>
+          <div className="inputGroup">
+            <label className="label">Number of subjects:</label>
             <input
               type="number"
               value={numSubjects}
               onChange={handleNumSubjectsChange}
               required
-              style={styles.input}
+              className="input"
+              placeholder="subject count"
             />
-          </label>
-        </div>
-        {showSubjectInputs && subjects.map((subject, index) => (
-          <div key={index} style={styles.subjectGroup}>
-            <label style={styles.label}>
-              Subject {index + 1}:
-              <input
-                type="text"
-                value={subject.sub}
-                onChange={(e) => handleSubjectChange(index, 'sub', e.target.value)}
-                required
-                style={styles.input}
-              />
-            </label>
-            <label style={styles.label}>
-              Teacher:
-              <input
-                type="text"
-                value={subject.teacher}
-                onChange={(e) => handleSubjectChange(index, 'teacher', e.target.value)}
-                required
-                style={styles.input}
-              />
-            </label>
-            <label style={styles.label}>
-              Classes per week:
-              <input
-                type="number"
-                value={subject.count}
-                onChange={(e) => handleSubjectChange(index, 'count', e.target.value)}
-                required
-                style={styles.input}
-              />
-            </label>
           </div>
-        ))}
+        </div>
+        <div className="subjectContainer">
+          <span id="infoLabel">individual class info</span>
+          {showSubjectInputs &&
+            subjects.map((subject, index) => (
+              <div key={index} className="subjectGroup">
+                <label className="label">Subject {index + 1}:</label>
+                <input
+                  type="text"
+                  value={subject.sub}
+                  onChange={(e) =>
+                    handleSubjectChange(index, "sub", e.target.value)
+                  }
+                  required
+                  className="input"
+                />
+                <label className="label">Teacher:</label>
+                <input
+                  type="text"
+                  value={subject.teacher}
+                  onChange={(e) =>
+                    handleSubjectChange(index, "teacher", e.target.value)
+                  }
+                  required
+                  className="input"
+                />
+                <label className="label">Classes per week:</label>
+                <input
+                  type="number"
+                  value={subject.count}
+                  onChange={(e) =>
+                    handleSubjectChange(index, "count", e.target.value)
+                  }
+                  required
+                  className="input"
+                />
+              </div>
+            ))}
+        </div>
         {showSubjectInputs && subjects.length > 0 && (
-          <button type="submit" style={styles.button}>
+          <button type="submit" className="button">
             Generate Routine
           </button>
         )}
       </form>
       {routine && (
-        <div>
-          <h2>Routine:</h2>
-          <table style={styles.table}>
+        <div className="table">
+          <h2>Generated Routine:</h2>
+          <table>
             <thead>
               <tr>
-                <th>Day</th>
+                <th className="th">Day</th>
                 {Array.from({ length: numClassesPerDay }, (_, i) => (
-                  <th key={i}>Class {i + 1}</th>
+                  <th key={i} className="th">
+                    Class {i + 1}
+                  </th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {routine.map((day, index) => (
                 <tr key={index}>
-                  <td>{["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"][index % 7]}</td>
+                  <td className="td">
+                    {
+                      [
+                        "Monday",
+                        "Tuesday",
+                        "Wednesday",
+                        "Thursday",
+                        "Friday",
+                        "Saturday",
+                        "Sunday",
+                      ][index % 7]
+                    }
+                  </td>
                   {day.map((classItem, classIndex) => (
-                    <td key={classIndex}>
+                    <td key={classIndex} className="td">
                       {classItem.sub} - {classItem.teacher}
                     </td>
                   ))}
@@ -161,7 +204,7 @@ const RoutineMakerApp = () => {
               ))}
             </tbody>
           </table>
-          <button onClick={generatePDF} style={styles.button}>
+          <button onClick={generatePDF} className="button">
             Download PDF
           </button>
         </div>
@@ -195,62 +238,5 @@ function routineMaker(numDays, numClassesPerDay, subjects) {
 
   return week;
 }
-
-const styles = {
-  container: {
-    padding: '20px',
-    fontFamily: 'Arial, sans-serif'
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '10px'
-  },
-  inputGroup: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: '10px'
-  },
-  subjectGroup: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: '10px',
-    paddingLeft: '20px'
-  },
-  label: {
-    marginBottom: '5px'
-  },
-  input: {
-    padding: '5px',
-    fontSize: '16px'
-  },
-  button: {
-    padding: '10px',
-    fontSize: '16px',
-    marginTop: '10px',
-    cursor: 'pointer',
-    backgroundColor: '#007bff',
-    color: 'white',
-    border: 'none',
-    borderRadius: '5px'
-  },
-  table: {
-    width: '100%',
-    borderCollapse: 'collapse',
-    marginTop: '20px',
-    textAlign: 'left'
-  },
-  th: {
-    border: '1px solid #dddddd',
-    textAlign: 'left',
-    padding: '8px',
-    backgroundColor: '#f2f2f2'
-  },
-  td: {
-    border: '1px solid #dddddd',
-    textAlign: 'left',
-    padding: '8px'
-  }
-};
 
 export default RoutineMakerApp;

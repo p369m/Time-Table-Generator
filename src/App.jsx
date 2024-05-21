@@ -1,14 +1,11 @@
-import './App.css'
-import RoutineMakerApp from './RoutineMakerApp'
+import RoutineMakerApp from "./RoutineMakerApp";
 
 function App() {
-
-
   return (
-    <div className='app'>
-     <RoutineMakerApp/>
-    </div>
-  )
+    <>
+      <RoutineMakerApp />
+    </>
+  );
 }
 
-export default App
+export default App;
