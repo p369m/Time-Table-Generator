@@ -3,7 +3,7 @@
   height: 40%;
   /* width: 55%; */
   overflow: hidden;
-  padding: 5%;
+  padding: 4%;
   font-family: Arial, sans-serif;
   box-shadow: 4px 4px 8px rgba(67, 67, 67, 0.334);
   border-radius: 10px;
@@ -43,8 +43,8 @@ input[type="text"],[type="number"]{
   margin-bottom: 10px;
 }
 .subjectContainer {
-	/* height: 75vh;
-	overflow-y: scroll; */
+	height: 55vh;
+	overflow-y: scroll;
   padding: 1%;
   border: 1px solid rgba(0, 11, 128, 0.248);
   border-radius: 5px;
@@ -68,19 +68,25 @@ input[type="text"],[type="number"]{
   font-size: 16px;
 }
 .button {
+  width: 100%;
   padding: 10px;
   font-size: 16px;
   margin-top: 10px;
   cursor: pointer;
-  background-color: #007bff;
+  background-color: #007bffba;
   color: white;
   border: none;
   border-radius: 5px;
 }
+.button:hover {
+  background-color: #0056b3;
+}
 .table {
+  height: 60vh;
   width: 60%;
   text-align: left;
 	margin-left: 5%;
+  border: 1px solid rgba(0, 11, 128, 0.248);
 }
 th,
 td {
